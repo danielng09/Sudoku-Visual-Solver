@@ -3,6 +3,10 @@ import SudokuSolver from './sudokuSolver'
 import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/boards.js'
 
 export default class Backtracking extends SudokuSolver {
+
+  /**
+  * @param {String} inputBoard
+  */
   constructor(inputBoard = EASY_BOARD_2) {
     super(inputBoard)
     this.squares_to_values = this._parseInputBoard(inputBoard);
@@ -16,7 +20,9 @@ export default class Backtracking extends SudokuSolver {
     console.log("iterations: ", this.iterations);
   }
 
-  // search (dfs)
+  /**
+  * @param {Map} squares_to_values
+  */
   search(squares_to_values) {
     if (this._isSolved(squares_to_values)) { return squares_to_values; }
     this.iterations += 1;
@@ -33,11 +39,18 @@ export default class Backtracking extends SudokuSolver {
     return false;
   }
 
+  /**
+  * @param {Map} squares_to_values
+  */
   _findNextSquare(squares_to_values) {
     let squares = Array.from(squares_to_values.keys());
     return [].find.call(squares, (square) => squares_to_values.get(square) === "0")
   }
 
+  /**
+  * @param {Map} squares_to_values
+  * @param {String} square
+  */
   _getPossValuesFor(squares_to_values, square) {
     let possValues = new Set(this.DIGITS.split(""));
     this.PEERS[square].forEach((peer) => {
@@ -47,12 +60,18 @@ export default class Backtracking extends SudokuSolver {
     return Array.from(possValues);
   }
 
+  /**
+  * @param {Map} squares_to_values
+  */
   _isSolved(squares_to_values) {
     return Array.from(squares_to_values.keys()).every((key) => {
       return squares_to_values.get(key) !== "0";
     });
   }
 
+  /**
+  * @param {String} inputBoard
+  */
   _parseInputBoard(inputBoard) {
     let squares_to_values = new Map();
     [].forEach.call(inputBoard, (inputSquare, index) => {

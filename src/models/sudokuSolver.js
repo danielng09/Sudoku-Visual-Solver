@@ -8,6 +8,10 @@ export default class SudokuSolver {
   UNITS = this._get_units();
   PEERS = this._get_peers();
 
+
+  /**
+  * @param {String} inputBoard
+  */
   constructor(inputBoard = EASY_BOARD) {
     this.inputBoard = inputBoard;
   }
@@ -62,6 +66,9 @@ export default class SudokuSolver {
     return output;
   }
 
+  /**
+  * @param {Map} squares_to_values
+  */
   prettyPrint(squares_to_values = this.squares_to_values) {
     console.log(new Array(3).join('\n'))
 
