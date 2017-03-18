@@ -7,7 +7,6 @@ export default class Backtracking extends SudokuSolver {
     super(inputBoard)
     this.squares_to_values = this._parseInputBoard(inputBoard);
     this.iterations = 0;
-    this.prettyPrint()
   }
 
   solve() {
@@ -20,17 +19,15 @@ export default class Backtracking extends SudokuSolver {
   // search (dfs)
   search(squares_to_values) {
     if (this._isSolved(squares_to_values)) { return squares_to_values; }
+    this.iterations += 1;
 
     let square = this._findNextSquare(squares_to_values);
-    // let possValues = this.DIGITS.split("")
     let possValues = this._getPossValuesFor(squares_to_values, square);
     if (possValues.length === 0) { return false; }
 
-    for (var count = 0; count < possValues.length; count ++) {
-      // if (this._validPlacement(squares_to_values, square, possValues[count])) {
-        let result = this.search(new Map(squares_to_values).set(square, possValues[count]));
-        if (result) { return result; }
-      // }
+    for (let possValue of possValues) {
+      let result = this.search(new Map(squares_to_values).set(square, possValue));
+      if (result) { return result; }
     }
 
     return false;
@@ -56,20 +53,6 @@ export default class Backtracking extends SudokuSolver {
     });
   }
 
-  // _validPlacement(squares_to_values = this.squares_to_values, square, value) {
-  //   if (!squares_to_values.get(square).includes(value)) { return false; }
-  //
-  //   for (let peer of this.PEERS[square]) {
-  //     let values = squares_to_values.get(peer);
-  //
-  //     if (values.includes(String(value)) && values.length === 1) {
-  //       return false;
-  //     }
-  //   }
-  //
-  //   return true
-  // }
-
   _parseInputBoard(inputBoard) {
     let squares_to_values = new Map();
     [].forEach.call(inputBoard, (inputSquare, index) => {
@@ -79,5 +62,4 @@ export default class Backtracking extends SudokuSolver {
 
     return squares_to_values;
   }
-
 }
