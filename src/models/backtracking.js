@@ -43,8 +43,18 @@ export default class Backtracking extends SudokuSolver {
   * @param {Map} squares_to_values
   */
   _findNextSquare(squares_to_values) {
-    let squares = Array.from(squares_to_values.keys());
-    return [].find.call(squares, (square) => squares_to_values.get(square) === "0")
+    let sorted_squares = [...squares_to_values.entries()]
+    sorted_squares.sort((a, b) => {
+        if (a[1].length === 1 ) {
+          return 1;
+        } else if (b[1].length === 1) {
+          return -1;
+        } else {
+          return a[1].length - b[1].length || a[0].localeCompare(b[0]);
+        }
+    });
+
+    return sorted_squares[0][0];
   }
 
   /**
