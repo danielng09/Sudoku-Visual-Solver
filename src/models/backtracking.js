@@ -84,12 +84,24 @@ export default class Backtracking extends SudokuSolver {
   */
   _parseInputBoard(inputBoard) {
     let squares_to_values = new Map();
-    [].forEach.call(inputBoard, (inputSquare, index) => {
-      let square = this.SQUARES[index];
-      let values = inputSquare === "0" ? this.DIGITS : inputSquare;
-      squares_to_values.set(square, values);
-    });
+    this.SQUARES.forEach((square) => squares_to_values.set(square, this.DIGITS))
+    this.squares_to_values = squares_to_values;
+
+    [].forEach.call(inputBoard, (inputValue, index) => {
+      if (inputValue !== "0") {
+        let square = this.SQUARES[index];
+        this._assign(square, inputValue);
+      }
+    })
 
     return squares_to_values;
+  }
+
+  /**
+  * @param {String} square
+  * @param {String} value
+  */
+  _assign(square, value) {
+    this.squares_to_values.set(square, value);
   }
 }
