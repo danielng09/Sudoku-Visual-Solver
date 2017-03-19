@@ -73,9 +73,9 @@ export default class Backtracking extends SudokuSolver {
   /**
   * @param {Map} squares_to_values
   */
-  _isSolved(squares_to_values) {
+  _isSolved(squares_to_values = this.squares_to_values) {
     return Array.from(squares_to_values.keys()).every((key) => {
-      return squares_to_values.get(key) !== "0";
+      return squares_to_values.get(key).length === 1;
     });
   }
 
@@ -86,7 +86,8 @@ export default class Backtracking extends SudokuSolver {
     let squares_to_values = new Map();
     [].forEach.call(inputBoard, (inputSquare, index) => {
       let square = this.SQUARES[index];
-      squares_to_values.set(square, inputSquare)
+      let values = inputSquare === "0" ? this.DIGITS : inputSquare;
+      squares_to_values.set(square, values);
     });
 
     return squares_to_values;
