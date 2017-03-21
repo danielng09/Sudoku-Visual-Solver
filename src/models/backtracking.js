@@ -32,7 +32,8 @@ export default class Backtracking extends SudokuSolver {
     if (possValues.length === 0) { return false; }
 
     for (let possValue of possValues) {
-      let result = this.search(new Map(squares_to_values).set(square, possValue));
+      let new_squares_to_values = this._assign(new Map(squares_to_values), square, possValue);
+      let result = this.search(new_squares_to_values);
       if (result) { return result; }
     }
 
@@ -90,7 +91,7 @@ export default class Backtracking extends SudokuSolver {
     [].forEach.call(inputBoard, (inputValue, index) => {
       if (inputValue !== "0") {
         let square = this.SQUARES[index];
-        this._assign(square, inputValue);
+        this._assign(this.squares_to_values, square, inputValue);
       }
     })
 
@@ -98,10 +99,11 @@ export default class Backtracking extends SudokuSolver {
   }
 
   /**
+  * @param {Map} squares_to_values
   * @param {String} square
   * @param {String} value
   */
-  _assign(square, value) {
-    this.squares_to_values.set(square, value);
+  _assign(squares_to_values, square, value) {
+    return squares_to_values.set(square, value);
   }
 }

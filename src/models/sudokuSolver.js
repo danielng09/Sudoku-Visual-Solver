@@ -8,7 +8,6 @@ export default class SudokuSolver {
   UNITS = this._get_units();
   PEERS = this._get_peers();
 
-
   /**
   * @param {String} inputBoard
   */
