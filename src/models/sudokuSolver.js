@@ -5,9 +5,9 @@ export default class SudokuSolver {
   COLS = COLS;
   DIGITS = this.COLS;
   SQUARES = Object.freeze(this._product(this.ROWS, this.COLS));
-  UNIT_LIST = Object.freeze(this._get_unit_list());
-  UNITS = this._get_units();
-  PEERS = this._get_peers();
+  UNIT_LIST = Object.freeze(this._getUnitList());
+  UNITS = this._getUnits();
+  PEERS = this._getPeers();
 
   /**
   * @param {String} inputBoard
@@ -16,7 +16,7 @@ export default class SudokuSolver {
     this.inputBoard = inputBoard;
   }
 
-  _get_unit_list() {
+  _getUnitList() {
     // get subsquare units
     let subsquareUnits = [];
     ["ABC", "DEF", "GHI"].forEach((rowGroup) => {
@@ -32,7 +32,7 @@ export default class SudokuSolver {
     return colUnits.concat(rowUnits, subsquareUnits);
   }
 
-  _get_units() {
+  _getUnits() {
     let units = {};
     this.SQUARES.forEach((square) => {
       units[square] = this.UNIT_LIST.filter((unit) => unit.includes(square));
@@ -41,7 +41,7 @@ export default class SudokuSolver {
     return units;
   }
 
-  _get_peers() {
+  _getPeers() {
     let peers = {};
     this.SQUARES.forEach((square) => {
       peers[square] = new Set(this.UNITS[square].reduce((a, b) => a.concat(b)));
@@ -67,9 +67,9 @@ export default class SudokuSolver {
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   */
-  prettyPrint(squares_to_values = this.squares_to_values) {
+  prettyPrint(squaresToValues = this.squaresToValues) {
     console.log(new Array(3).join('\n'))
 
     console.log(`${"*".repeat(46)} BOARD ${"*".repeat(46)}`);
@@ -86,7 +86,7 @@ export default class SudokuSolver {
       let output = [];
       output.push(`${row} `);
       [].forEach.call(this.COLS, (col) => {
-        let values = squares_to_values.get(`${row}${col}`);
+        let values = squaresToValues.get(`${row}${col}`);
         while (values.length < 9) {
           if (values.length % 2 === 0) {
             values = " " + values;

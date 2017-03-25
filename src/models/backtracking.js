@@ -1,6 +1,6 @@
 import SudokuSolver from './sudokuSolver'
 
-import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/boards.js'
+import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/constants.js'
 
 export default class Backtracking extends SudokuSolver {
 
@@ -9,31 +9,31 @@ export default class Backtracking extends SudokuSolver {
   */
   constructor(inputBoard = EASY_BOARD_2) {
     super(inputBoard)
-    this.squares_to_values = this._parseInputBoard(inputBoard);
+    this.squaresToValues = this._parseInputBoard(inputBoard);
     this.iterations = 0;
   }
 
   solve() {
-    this.squares_to_values = this.search(new Map(this.squares_to_values));
+    this.squaresToValues = this.search(new Map(this.squaresToValues));
     console.log(`${"*".repeat(40)} DONE!!! ${"*".repeat(40)}`);
     this.prettyPrint()
     console.log("iterations: ", this.iterations);
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   */
-  search(squares_to_values) {
-    if (this._isSolved(squares_to_values)) { return squares_to_values; }
+  search(squaresToValues) {
+    if (this._isSolved(squaresToValues)) { return squaresToValues; }
     this.iterations += 1;
 
-    let square = this._findNextSquare(squares_to_values);
-    let possValues = this._getPossValuesFor(squares_to_values, square);
+    let square = this._findNextSquare(squaresToValues);
+    let possValues = this._getPossValuesFor(squaresToValues, square);
     if (possValues.length === 0) { return false; }
 
     for (let possValue of possValues) {
-      let new_squares_to_values = this._assign(new Map(squares_to_values), square, possValue);
-      let result = this.search(new_squares_to_values);
+      let newSquaresToValues = this._assign(new Map(squaresToValues), square, possValue);
+      let result = this.search(newSquaresToValues);
       if (result) { return result; }
     }
 
@@ -41,11 +41,11 @@ export default class Backtracking extends SudokuSolver {
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   */
-  _findNextSquare(squares_to_values) {
-    let sorted_squares = [...squares_to_values.entries()]
-    sorted_squares.sort((a, b) => {
+  _findNextSquare(squaresToValues) {
+    let sortedSquares = [...squaresToValues.entries()]
+    sortedSquares.sort((a, b) => {
         if (a[1].length === 1 ) {
           return 1;
         } else if (b[1].length === 1) {
@@ -55,28 +55,28 @@ export default class Backtracking extends SudokuSolver {
         }
     });
 
-    return sorted_squares[0][0];
+    return sortedSquares[0][0];
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   * @param {String} square
   */
-  _getPossValuesFor(squares_to_values, square) {
+  _getPossValuesFor(squaresToValues, square) {
     let possValues = new Set(this.DIGITS.split(""));
     this.PEERS[square].forEach((peer) => {
-      possValues.delete(squares_to_values.get(peer))
+      possValues.delete(squaresToValues.get(peer))
     });
 
     return Array.from(possValues);
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   */
-  _isSolved(squares_to_values = this.squares_to_values) {
-    return Array.from(squares_to_values.keys()).every((key) => {
-      return squares_to_values.get(key).length === 1;
+  _isSolved(squaresToValues = this.squaresToValues) {
+    return Array.from(squaresToValues.keys()).every((key) => {
+      return squaresToValues.get(key).length === 1;
     });
   }
 
@@ -84,26 +84,26 @@ export default class Backtracking extends SudokuSolver {
   * @param {String} inputBoard
   */
   _parseInputBoard(inputBoard) {
-    let squares_to_values = new Map();
-    this.SQUARES.forEach((square) => squares_to_values.set(square, this.DIGITS))
-    this.squares_to_values = squares_to_values;
+    let squaresToValues = new Map();
+    this.SQUARES.forEach((square) => squaresToValues.set(square, this.DIGITS))
+    this.squaresToValues = squaresToValues;
 
     [].forEach.call(inputBoard, (inputValue, index) => {
       if (inputValue !== "0") {
         let square = this.SQUARES[index];
-        this._assign(this.squares_to_values, square, inputValue);
+        this._assign(this.squaresToValues, square, inputValue);
       }
     })
 
-    return squares_to_values;
+    return squaresToValues;
   }
 
   /**
-  * @param {Map} squares_to_values
+  * @param {Map} squaresToValues
   * @param {String} square
   * @param {String} value
   */
-  _assign(squares_to_values, square, value) {
-    return squares_to_values.set(square, value);
+  _assign(squaresToValues, square, value) {
+    return squaresToValues.set(square, value);
   }
 }
