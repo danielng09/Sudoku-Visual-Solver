@@ -1,7 +1,8 @@
-export default class SudokuSolver {
+import { ROWS, COLS } from "../utilities/constants";
 
-  COLS = Object.freeze("123456789");
-  ROWS = Object.freeze("ABCDEFGHI");
+export default class SudokuSolver {
+  ROWS = ROWS;
+  COLS = COLS;
   DIGITS = this.COLS;
   SQUARES = Object.freeze(this._product(this.ROWS, this.COLS));
   UNIT_LIST = Object.freeze(this._get_unit_list());
