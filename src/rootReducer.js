@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import BoardReducer from './containers/board/reducer';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  board: BoardReducer
 });
 
 export default rootReducer;
