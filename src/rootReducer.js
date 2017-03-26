@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import BoardReducer from './containers/board/reducer';
 
 const rootReducer = combineReducers({
-  board: BoardReducer
+  squaresToValues: BoardReducer
 });
 
 export default rootReducer;

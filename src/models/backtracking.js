@@ -85,7 +85,7 @@ export default class Backtracking extends SudokuSolver {
   */
   _parseInputBoard(inputBoard) {
     let squaresToValues = new Map();
-    this.SQUARES.forEach((square) => squaresToValues.set(square, this.DIGITS))
+    this.SQUARES.forEach((square) => squaresToValues.set(square, this.DIGITS));
     this.squaresToValues = squaresToValues;
 
     [].forEach.call(inputBoard, (inputValue, index) => {

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import App from './components/app/app';
-import reducers from './components/app/reducer';
+import reducers from './rootReducer';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
