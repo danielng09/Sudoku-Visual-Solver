@@ -14,11 +14,11 @@ export default class App extends Component {
 
           <div className="card-block">
             <div className="row">
-              <div className="col-lg-9 col-md-12">
+              <div className="col-lg-8 col-md-12">
                 <Board />
               </div>
 
-              <div className="col-lg-3 col-md-12">
+              <div className="col-lg-4 col-md-12">
                 <AlgorithmList />
               </div>
 
