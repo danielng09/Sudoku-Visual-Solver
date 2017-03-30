@@ -29,7 +29,7 @@ class Board extends Component {
 
   render() {
     return(
-      <table className="table table-bordered table-inverse">
+      <table className="table table-bordered table-inverse board">
         <tbody>
           {this.renderRows()}
         </tbody>
