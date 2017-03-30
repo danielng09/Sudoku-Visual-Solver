@@ -1,8 +1,11 @@
-import { ROWS, COLS } from "../utilities/constants";
+import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/constants.js'
+import { ROWS, COLS } from '../utilities/constants';
 
 export default class SudokuSolver {
-  ROWS = ROWS;
+
+  MAX_ITERATIONS = 1000;
   COLS = COLS;
+  ROWS = ROWS;
   DIGITS = this.COLS;
   SQUARES = Object.freeze(this._product(this.ROWS, this.COLS));
   UNIT_LIST = Object.freeze(this._getUnitList());
@@ -12,8 +15,9 @@ export default class SudokuSolver {
   /**
   * @param {String} inputBoard
   */
-  constructor(inputBoard = EASY_BOARD) {
+  constructor(inputBoard = EASY_BOARD_1) {
     this.inputBoard = inputBoard;
+    this.squaresToValues = this._parseInputBoard();
   }
 
   _getUnitList() {
@@ -64,6 +68,30 @@ export default class SudokuSolver {
     })
 
     return output;
+  }
+
+  _parseInputBoard() {
+    let squaresToValues = new Map();
+    this.SQUARES.forEach((square) => squaresToValues.set(square, this.DIGITS));
+    this.squaresToValues = squaresToValues;
+
+    [].forEach.call(this.inputBoard, (inputValue, index) => {
+      if (inputValue !== "0") {
+        let square = this.SQUARES[index];
+        this._assign(this.squaresToValues, square, inputValue);
+      }
+    })
+
+    return squaresToValues;
+  }
+
+  /**
+  * @param {Map} squaresToValues
+  * @param {String} square
+  * @param {String} value
+  */
+  _assign(squaresToValues, square, value) {
+    return squaresToValues.set(square, value);
   }
 
   /**
