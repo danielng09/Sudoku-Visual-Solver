@@ -1,13 +1,47 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { selectAlgorithm } from './actions';
+import { bindActionCreators } from 'redux';
+import classNames from 'classnames';
 
-export default class AlgorithmList extends Component {
+require("./style.scss");
+
+import { ALGORITHM_NAMES } from '../../utilities/constants';
+
+class AlgorithmList extends Component {
+  renderList() {
+    return ALGORITHM_NAMES.map((algorithmName) => {
+      let algoClass = classNames("btn", "btn-primary", {
+        active: this.props.activeAlgorithm == algorithmName
+      })
+      return (
+        <div
+          key={algorithmName}
+          className={algoClass}
+          onClick={() => this.props.selectAlgorithm(algorithmName)}>
+          {algorithmName}
+        </div>
+      )
+    });
+  }
+
   render() {
     return (
       <div className="btn-group-vertical">
-        <div className="btn btn-primary">Backtracking</div>
-        <div className="btn btn-primary">Constrained Backtracking</div>
-        <div className="btn btn-primary">Algorthm 3</div>
+        {this.renderList()}
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    activeAlgorithm: state.activeAlgorithm
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectAlgorithm: selectAlgorithm}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlgorithmList);
