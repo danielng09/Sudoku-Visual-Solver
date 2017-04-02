@@ -1,3 +1,5 @@
+import Queue from './queue';
+
 import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/constants.js'
 import { ROWS, COLS } from '../utilities/constants';
 
@@ -15,9 +17,9 @@ export default class SudokuSolver {
   /**
   * @param {String} inputBoard
   */
-  constructor(inputBoard = EASY_BOARD_1) {
+  constructor(inputBoard = EASY_BOARD_3) {
     this.inputBoard = inputBoard;
-    this.squaresToValues = this._parseInputBoard();
+    this.queue = new Queue();
   }
 
   _getUnitList() {
@@ -70,7 +72,7 @@ export default class SudokuSolver {
     return output;
   }
 
-  _parseInputBoard() {
+  parseInputBoard() {
     let squaresToValues = new Map();
     this.SQUARES.forEach((square) => squaresToValues.set(square, this.DIGITS));
     this.squaresToValues = squaresToValues;

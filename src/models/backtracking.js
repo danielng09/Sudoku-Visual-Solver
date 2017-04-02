@@ -1,12 +1,14 @@
-import SudokuSolver from './sudokuSolver'
+import SudokuSolver from './sudokuSolver';
+import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/constants.js';
 
 export default class Backtracking extends SudokuSolver {
 
   /**
   * @param {String} inputBoard
   */
-  constructor(squaresToValues) {
-    this.squaresToValues = squaresToValues;
+  constructor(inputBoard = EASY_BOARD_3) {
+    super(inputBoard)
+    this.squaresToValues = this.parseInputBoard(inputBoard);
     this.iterations = 0;
   }
 
@@ -29,6 +31,7 @@ export default class Backtracking extends SudokuSolver {
 
     for (let possValue of possValues) {
       let newSquaresToValues = this._assign(new Map(squaresToValues), square, possValue);
+      this.queue.push(newSquaresToValues);
       let result = this.search(newSquaresToValues);
       if (result) { return result; }
     }
