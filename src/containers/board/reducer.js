@@ -1,4 +1,4 @@
-import SudokuSolver from '../../models/sudokuSolver';
+import { SudokuSolver } from '../../models/algorithms';
 
 let sudokuSolver = new SudokuSolver();
 
