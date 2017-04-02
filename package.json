@@ -29,6 +29,7 @@
     "jsdom": "^8.1.0",
     "node-sass": "^4.5.1",
     "react-addons-test-utils": "^0.14.7",
+    "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "webpack": "^1.14.0",
