@@ -3,7 +3,7 @@ import BoardReducer from './containers/board/reducer';
 import AlgorithmListReducer from './containers/algorithmList/reducer'
 
 const rootReducer = combineReducers({
-  squaresToValues: BoardReducer,
+  board: BoardReducer,
   activeAlgorithm: AlgorithmListReducer
 });
 

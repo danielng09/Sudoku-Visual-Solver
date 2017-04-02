@@ -22,12 +22,16 @@ class Board extends Component {
           key={`${row}${col}`}
           col={col}
           row={row}
-          value={this.props.squaresToValues.get(`${row}${col}`)} />
+          value={this.props.board.get(`${row}${col}`)} />
       )
     })
   }
 
   render() {
+    if (!this.props.board) {
+      return <div>Loading...</div>;
+    }
+
     return(
       <table className="table table-bordered table-inverse board">
         <tbody>
@@ -40,7 +44,7 @@ class Board extends Component {
 
 function mapStateToProps(state) {
   return {
-    squaresToValues: state.squaresToValues
+    board: state.board
   }
 }
 
