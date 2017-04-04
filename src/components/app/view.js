@@ -29,7 +29,7 @@ export default class App extends Component {
           </div>
 
           <div className="card-footer text-muted">
-            By Daniel Ng
+            <a href="https://github.com/danielng09" target="_blank">By Daniel Ng</a>
           </div>
         </div>
       </div>
