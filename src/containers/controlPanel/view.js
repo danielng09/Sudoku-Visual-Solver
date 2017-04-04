@@ -1,37 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import classNames from 'classnames';
-import attemptToSolve from './actions';
 
-let controls = [
-  { name: "play", handler: attemptToSolve },
-  // { name: "stop", handler: attemptToSolve },
-  // { name: "backward", handler: attemptToSolve },
-  // { name: "forward", handler: attemptToSolve }
-];
+import { toggleSolvingStatus, resetBoard } from './actions';
+import PlayStopButton from "../../components/playStopButton/view";
 
 class ControlPanel extends Component {
-  renderControls() {
-    return controls.map((control) => {
-      let controlClass = classNames("fa", "fa-lg", `fa-${control.name}`);
-
-      return (
-        <button
-          key={control.name}
-          className="btn btn-outline-primary mx-4"
-          onClick={() => this.props.attemptToSolve()}>
-            <i className={controlClass} aria-hidden="true" />
-        </button>
-      )
-    });
-  }
-
   render() {
     return(
       <div className="control-panel mt-4">
-        {this.renderControls()}
+        <PlayStopButton
+          handler={this.props.toggleSolvingStatus}
+          solvingStatus={this.props.solvingStatus} />
       </div>
     )
   }
@@ -39,14 +20,14 @@ class ControlPanel extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedControl: state.selectedControl
+    solvingStatus: state.solvingStatus
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  let actionCreators = {};
-  controls.forEach(control => actionCreators[control.handler.name] = control.handler);
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators({
+    toggleSolvingStatus: toggleSolvingStatus
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlPanel);
