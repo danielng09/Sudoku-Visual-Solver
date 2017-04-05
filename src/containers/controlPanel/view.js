@@ -8,8 +8,12 @@ import PlayStopButton from "../../components/playStopButton/view";
 
 class ControlPanel extends Component {
   render() {
+    let containerClass = classNames("control-panel", "mt-4", {
+      invisible: !this.props.activeAlgorithm
+    });
+
     return(
-      <div className="control-panel mt-4">
+      <div className={containerClass}>
         <PlayStopButton
           handler={this.props.toggleSolvingStatus}
           solvingStatus={this.props.solvingStatus} />
@@ -20,13 +24,15 @@ class ControlPanel extends Component {
 
 function mapStateToProps(state) {
   return {
-    solvingStatus: state.solvingStatus
+    solvingStatus: state.solvingStatus,
+    activeAlgorithm: state.activeAlgorithm
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     toggleSolvingStatus: toggleSolvingStatus
+
   }, dispatch);
 }
 
