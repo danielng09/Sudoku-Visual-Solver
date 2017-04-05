@@ -5,7 +5,7 @@ import SolvingStatus from './containers/ControlPanel/reducer';
 
 const rootReducer = combineReducers({
   board: BoardReducer,
-  activeAlgorithm: AlgorithmListReducer,
+  selectedAlgorithm: AlgorithmListReducer,
   solvingStatus: SolvingStatus
 });
 

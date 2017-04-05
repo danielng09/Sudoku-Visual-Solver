@@ -14,7 +14,7 @@ class AlgorithmList extends Component {
 
     return SELECTABLE_ALGORITHM_NAMES.map((algorithmName) => {
       let algoClass = classNames("btn", "btn-primary", {
-        active: this.props.activeAlgorithm === algorithmName
+        active: this.props.selectedAlgorithm === algorithmName
       });
 
       return (
@@ -39,7 +39,7 @@ class AlgorithmList extends Component {
 
 function mapStateToProps(state) {
   return {
-    activeAlgorithm: state.activeAlgorithm
+    selectedAlgorithm: state.selectedAlgorithm
   }
 }
 

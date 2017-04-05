@@ -9,7 +9,7 @@ import PlayStopButton from "../../components/playStopButton/view";
 class ControlPanel extends Component {
   render() {
     let containerClass = classNames("control-panel", "mt-4", {
-      invisible: !this.props.activeAlgorithm
+      invisible: !this.props.selectedAlgorithm
     });
 
     return(
@@ -17,6 +17,11 @@ class ControlPanel extends Component {
         <PlayStopButton
           handler={this.props.toggleSolvingStatus}
           solvingStatus={this.props.solvingStatus} />
+          <button
+            className="btn btn-outline-primary mx-4"
+            onClick={() => this.props.resetBoard()}>
+              <i className="fa fa-lg fa-refresh" aria-hidden="true" />
+          </button>
       </div>
     )
   }
@@ -25,7 +30,7 @@ class ControlPanel extends Component {
 function mapStateToProps(state) {
   return {
     solvingStatus: state.solvingStatus,
-    activeAlgorithm: state.activeAlgorithm
+    selectedAlgorithm: state.selectedAlgorithm
   }
 }
 
