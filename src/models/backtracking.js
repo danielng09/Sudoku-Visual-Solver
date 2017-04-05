@@ -1,5 +1,5 @@
 import SudokuSolver from './sudokuSolver';
-import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/constants.js';
+import { EASY_BOARD_1, EASY_BOARD_2, EASY_BOARD_3 } from '../utilities/boardConstants.js';
 
 export default class Backtracking extends SudokuSolver {
 

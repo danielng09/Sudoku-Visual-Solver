@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { ROWS, COLS } from '../../utilities/constants';
+import { ROWS, COLS } from '../../utilities/boardConstants';
 import Square from '../../components/square/view';
 
 class Board extends Component {

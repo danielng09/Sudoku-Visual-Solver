@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 require("./style.scss");
 
-import { ALGORITHM_NAMES } from '../../utilities/constants';
+import { SELECTABLE_ALGORITHM_NAMES } from "../../utilities/algorithmConstants";
 
 class AlgorithmList extends Component {
   renderList() {
