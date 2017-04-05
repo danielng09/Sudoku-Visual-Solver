@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectAlgorithm } from './actions';
+import { selectAndRunAlgorithm } from './actions';
 import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 
@@ -9,16 +9,19 @@ require("./style.scss");
 import { SELECTABLE_ALGORITHM_NAMES } from "../../utilities/algorithmConstants";
 
 class AlgorithmList extends Component {
+
   renderList() {
-    return ALGORITHM_NAMES.map((algorithmName) => {
+
+    return SELECTABLE_ALGORITHM_NAMES.map((algorithmName) => {
       let algoClass = classNames("btn", "btn-primary", {
-        active: this.props.activeAlgorithm == algorithmName
-      })
+        active: this.props.activeAlgorithm === algorithmName
+      });
+
       return (
         <div
           key={algorithmName}
           className={algoClass}
-          onClick={() => this.props.selectAlgorithm(algorithmName)}>
+          onClick={() => this.props.selectAndRunAlgorithm(algorithmName)}>
           {algorithmName}
         </div>
       )
@@ -41,7 +44,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectAlgorithm: selectAlgorithm}, dispatch)
+  return bindActionCreators({ selectAndRunAlgorithm: selectAndRunAlgorithm}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlgorithmList);
