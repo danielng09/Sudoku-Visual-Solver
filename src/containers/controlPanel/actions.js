@@ -1,4 +1,6 @@
-import { Queue } from '../../models/algorithms';
+import { Queue } from "../../models/algorithms";
+import { runSolver } from "../algorithmList/actions";
+import resetBoard from "../board/actions";
 
 let queue = new Queue();
 
@@ -60,9 +62,9 @@ export function toggleSolvingStatus(status) {
   }
 }
 
-export function resetBoard() {
-  return {
-    type: "RESET_BOARD",
-    payload: null
+export function refreshSolvingState() {
+  return function(dispatch, getState) {
+    runSolver(getState().selectedAlgorithm);
+    dispatch(resetBoard());
   }
 }

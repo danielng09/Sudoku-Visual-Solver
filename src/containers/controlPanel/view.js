@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classNames from 'classnames';
 
-import { toggleSolvingStatus, resetBoard } from './actions';
+import { toggleSolvingStatus, refreshSolvingState } from './actions';
 import PlayStopButton from "../../components/playStopButton/view";
 
 class ControlPanel extends Component {
@@ -19,7 +19,7 @@ class ControlPanel extends Component {
           solvingStatus={this.props.solvingStatus} />
           <button
             className="btn btn-outline-primary mx-4"
-            onClick={() => this.props.resetBoard()}>
+            onClick={() => this.props.refreshSolvingState()}>
               <i className="fa fa-lg fa-refresh" aria-hidden="true" />
           </button>
       </div>
@@ -36,8 +36,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    toggleSolvingStatus: toggleSolvingStatus
-
+    toggleSolvingStatus: toggleSolvingStatus,
+    refreshSolvingState: refreshSolvingState
   }, dispatch);
 }
 
