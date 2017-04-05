@@ -7,7 +7,7 @@ export function selectAlgorithm(algorithmName) {
   backtracking.solve();
 
   return {
-    type: "ALGORITHM_SELECTED",
+    type: "SELECT_ALGORITHM",
     payload: algorithmName
   }
 

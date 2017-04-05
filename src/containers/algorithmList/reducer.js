@@ -1,9 +1,7 @@
-import { ALGORITHM_NAMES } from '../../utilities/constants';
-
-export default function(state = ALGORITHM_NAMES[0], action) {
+export default function(state = null, action) {
 
   switch(action.type) {
-    case 'ALGORITHM_SELECTED':
+    case 'SELECT_ALGORITHM':
       return action.payload;
   }
 
