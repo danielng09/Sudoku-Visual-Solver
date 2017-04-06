@@ -1,6 +1,6 @@
 # Sudoku Visual Solver
 
-A visual representation of a sudoku problem being solved step-by-step using various algorithms.
+A visual representation of a sudoku problem being solved step-by-step using various algorithms. [Live link](https://danielng09.github.io/Sudoku-Visual-Solver/)
 
 You can find a description of sudoku and its rules [here](https://en.wikipedia.org/wiki/Sudoku).
 
