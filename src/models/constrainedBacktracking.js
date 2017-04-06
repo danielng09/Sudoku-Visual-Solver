@@ -10,7 +10,7 @@ export default class ConstrainedBacktracking extends Backtracking {
   * @param {String} value
   */
   _assign(squaresToValues, square, value) {
-    super._assign(squaresToValues, square, value);
+    let newSquaresToValues = super._assign(squaresToValues, square, value);
     this._eliminate(squaresToValues, square, value);
 
     return squaresToValues;
@@ -33,6 +33,7 @@ export default class ConstrainedBacktracking extends Backtracking {
         case 0:
           return false;
         case 1:
+          this.queue.push(new Map(squaresToValues));
           if (!this._eliminate(squaresToValues, peer, values[0])) { return false; }
         default:
           continue;
