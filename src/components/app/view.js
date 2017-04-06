@@ -22,6 +22,7 @@ export default class App extends Component {
               </div>
 
               <div className="col-lg-4 col-md-12">
+                <div className="m-t-40 lg-invisible">&nbsp;</div>
                 <AlgorithmList />
               </div>
             </div>
