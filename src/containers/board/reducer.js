@@ -1,9 +1,6 @@
-import { SudokuSolver } from '../../models/algorithms';
+import { DEFAULT_SQUARES_TO_VALUES } from '../../utilities/algorithmConstants';
 
-let sudokuSolver = new SudokuSolver();
-let squaresToValues = sudokuSolver.parseInputBoard();
-
-export default function(state = squaresToValues, action) {
+export default function(state = DEFAULT_SQUARES_TO_VALUES, action) {
   switch(action.type) {
     case "UPDATE_BOARD":
       return action.payload;
