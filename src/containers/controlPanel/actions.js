@@ -52,6 +52,7 @@ export function toggleSolvingStatus(status) {
       return;
     }
 
+    // update solving status
     dispatch(updateSolvingStatus(status));
 
     // attempt to solve if 'play'
@@ -64,7 +65,11 @@ export function toggleSolvingStatus(status) {
 
 export function refreshSolvingState() {
   return function(dispatch, getState) {
+    // reload queue
     runSolver(getState().selectedAlgorithm);
+    // re-enable play button
+    dispatch(updateSolvingStatus(false));
+    // reset the board
     dispatch(resetBoard());
   }
 }
