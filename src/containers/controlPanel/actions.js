@@ -27,7 +27,7 @@ function attemptSolve() {
   return function(dispatch, getState) {
 
     // return if queue is empty
-    if (!queue || queue.length === 0 || !getState().solvingStatus) {
+    if (!queue || queue.isEmpty() || !getState().solvingStatus) {
       return;
     }
 

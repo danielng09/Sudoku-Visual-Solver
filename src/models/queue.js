@@ -1,3 +1,4 @@
+// implement queue as a singleton
 let instance = null;
 
 export default class Queue {
@@ -11,6 +12,9 @@ export default class Queue {
     return instance;
   }
 
+  /**
+  * @param {Map} item
+  */
   push(item) {
     this.moves.push(item);
     return this.moves;
@@ -22,6 +26,10 @@ export default class Queue {
 
   reset() {
     this.moves = [];
+  }
+
+  isEmpty() {
+    return this.moves.length === 0;
   }
 
 }
