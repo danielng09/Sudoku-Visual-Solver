@@ -6,9 +6,9 @@ You can find a description of sudoku and its rules [here](https://en.wikipedia.o
 
 #### Features
 
-- [x] Add color to squares with default values
-- [ ] Play and stop
-- [ ] Multiple search algorithms (Backtracking, Constrained Backtracking)
-- [ ] Reset the board
-- [ ] Ability to slow down and speed-up up solving speed
+- [x] Color the default set squares of the board
+- [x] Enable play and stop solving
+- [x] Multiple search algorithms (Backtracking, Constrained Backtracking)
+- [x] Ability to reset the board
+- [x] Options to decrease and increase the solving speed
 - [ ] Display iterations
