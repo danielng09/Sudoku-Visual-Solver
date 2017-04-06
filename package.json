@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "An app that visually solves sudoku using various algorithms",
   "main": "index.js",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielng09/Sudoku-Visual-Solver.git"
+  },
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
@@ -34,5 +37,9 @@
     "style-loader": "^0.16.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.14.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/danielng09/Sudoku-Visual-Solver/issues"
+  },
+  "homepage": "https://github.com/danielng09/Sudoku-Visual-Solver#readme"
 }
