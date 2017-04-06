@@ -5,7 +5,7 @@ export default function(state = DEFAULT_SQUARES_TO_VALUES, action) {
     case "UPDATE_BOARD":
       return action.payload;
     case "RESET_BOARD":
-      return squaresToValues;
+      return DEFAULT_SQUARES_TO_VALUES;
   }
 
   return state;
