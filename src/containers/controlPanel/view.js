@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { toggleSolvingStatus, refreshSolvingState } from './actions';
 import PlayStopButton from "../../components/playStopButton/view";
+import SpeedControl from "../speedControl/view";
 
 class ControlPanel extends Component {
   render() {
@@ -17,11 +18,14 @@ class ControlPanel extends Component {
         <PlayStopButton
           handler={this.props.toggleSolvingStatus}
           solvingStatus={this.props.solvingStatus} />
-          <button
-            className="btn btn-outline-primary mx-4"
-            onClick={() => this.props.refreshSolvingState()}>
-              <i className="fa fa-lg fa-refresh" aria-hidden="true" />
-          </button>
+
+        <button
+          className="btn btn-outline-primary mx-4"
+          onClick={() => this.props.refreshSolvingState()}>
+            <i className="fa fa-lg fa-refresh" aria-hidden="true" />
+        </button>
+
+        <SpeedControl />
       </div>
     )
   }

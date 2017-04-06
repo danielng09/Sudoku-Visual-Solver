@@ -7,3 +7,5 @@ export const SOLVED_EASY_BOARD = Object.freeze("78241935653978612414652387965183
 
 export const COLS = Object.freeze("123456789");
 export const ROWS = Object.freeze("ABCDEFGHI");
+
+export const BASE_TIMEOUT = 400;

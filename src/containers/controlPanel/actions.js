@@ -1,6 +1,7 @@
 import { Queue } from "../../models/algorithms";
 import { runSolver } from "../algorithmList/actions";
 import resetBoard from "../board/actions";
+import { getTimeout } from "../../utilities/helpers";
 
 let queue = new Queue();
 
@@ -34,10 +35,13 @@ function attemptSolve() {
     // make move
     dispatch(makeMove());
 
+    // get timeout from selected speed
+    var timeout = getTimeout(getState().solvingSpeed);
+
     // continue making moves
     setTimeout(() => {
       attemptSolve()(dispatch, getState);
-    }, 100)
+    }, timeout)
   }
 }
 

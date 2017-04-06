@@ -1,5 +1,5 @@
 import { Queue, Backtracking } from "../../models/algorithms";
-import getMatchingAlgorithm from "../../utilities/helpers";
+import { getMatchingAlgorithm } from "../../utilities/helpers";
 
 let queue = new Queue();
 

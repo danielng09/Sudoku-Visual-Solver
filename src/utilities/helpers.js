@@ -1,4 +1,6 @@
 import * as ALGORITHMS from "../models/algorithms";
+import { BASE_TIMEOUT } from "./boardConstants";
+
 
 /**
 * @param {String} string
@@ -13,6 +15,13 @@ function classify(string) {
 /**
 * @param {String} name
 */
-export default function getMatchingAlgorithm(name) {
+export function getMatchingAlgorithm(name) {
   return ALGORITHMS[classify(name)];
+}
+
+/**
+* @param {Number} speed
+*/
+export function getTimeout(speed) {
+  return Math.round(BASE_TIMEOUT / speed)
 }
